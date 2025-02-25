@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add details</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+
+        .container{
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px;
+            width: 40rem;
+            text-align: center;
+        }
+
+        #form_container{
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter your details...</h1>
+        <form id="form_container">
+            <div>
+                <label for="id" >Enter ID</label>
+                <input type="text" name="id" id="id" required>
+            </div>
+
+            <div>
+                <label for="fname">Enter your first name</label>
+                <input type="text" name="fname" id="fname" required>
+            </div>
+
+            <div>
+                <label for="lname">Enter your last name</label>
+                <input type="text" name="lname" id="lname" required>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("form_container").addEventListener('submit', async(event)=>{
+            event.preventDefault()
+
+            const formData = new FormData(event.target)
+            const id = formData.get("id")
+            const fname = formData.get("fname")
+            const lname = formData.get("lname")
+
+            try{
+                const response = await fetch("/addData", {
+                    method : "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body : JSON.stringify({id, fname, lname})
+                })
+
+                if(response.ok){
+                    alert("Form submitted successfully.")
+                    event.target.reset()
+                }
+
+                else{
+                    const errMsg = await response.text()
+                    alert(errMsg)
+                }
+            }
+
+            catch(err){
+                alert("An error occurred: " + err.message)
+            }
+        })
+    </script>
+
+</body>
+</html>

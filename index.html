@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choices!</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav{
+            width: 100vw;
+            height: 5rem;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+
+            background-color: rgb(255, 255, 255);
+            color: black;
+        }
+
+        nav h1{
+                text-align: center;
+                margin-top: 1.5rem;
+                font-weight: bold;
+            }
+
+        .container{
+            width: 100vw;
+            height: 100vh;
+            background-color: #f0f4f8;
+            
+
+            display: flex;
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            
+        }
+
+        .data{
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px;
+            width: 40rem;
+            text-align: center;
+
+            display: flex;
+            justify-content: center; /* Centers horizontally */
+            align-items: center; /* Centers vertically */
+            gap: 4rem;
+        }
+
+        .data button{
+            margin-top: 1rem;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>You have only 2 choices...</h1>
+    </nav>
+
+    <div class="container">
+        <div class="data">
+            <button class="add">ADD</button>
+            <button class="get">GET</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".add").addEventListener('click', ()=>{
+            // location.href = "/add";
+            // window.location.replace("/add");
+
+            window.open("/add", "_blank");
+
+        })
+
+        document.querySelector(".get").addEventListener('click', ()=>{
+            // location.href = "/get";
+            window.open("/add", "_blank");
+
+        })
+    </script>
+</body>
+</html>
